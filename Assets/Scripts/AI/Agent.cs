@@ -11,12 +11,8 @@ public abstract class Agent : MonoBehaviour
 
     public float Reward { get; private set; }
 
-    [SerializeField] private float reverseDuration = 4.0f;
-    private float ReverseDuration => reverseDuration;
-    [SerializeField] private float reverseGasDuration = 2.0f;
-    private float ReverseGasDuration => reverseGasDuration; 
-    [SerializeField] private float reverseBrakeDuration = 2.0f;
-    private float ReverseBrakeDuration => reverseBrakeDuration;
+
+    public float Reward { get; private set; }
 
     public void SetReward(float reward) {
         Reward = reward;
@@ -28,7 +24,7 @@ public abstract class Agent : MonoBehaviour
 
     public abstract int GetState();
 
-    public abstract void AgentAction(double[] vectorAction, bool inReverse);
+    public abstract void AgentAction(double[] vectorAction);
     public abstract float GetDistance();
 
     public abstract void AgentReset();
