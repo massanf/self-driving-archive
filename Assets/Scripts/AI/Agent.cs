@@ -10,9 +10,12 @@ public abstract class Agent : MonoBehaviour
     public float BackUpTimer { get; private set; }
     public float Reward { get; private set; }
 
-    [SerializeField] private int ReverseDuration = 5;
-    [SerializeField] private int ReverseGasDuration = 2;
-    [SerializeField] private int ReverseBrakeDuration = 2;
+    [SerializeField] private float reverseDuration = 5.0f;
+    private float ReverseDuration => reverseDuration;
+    [SerializeField] private float reverseGasDuration = 2.0f;
+    private float ReverseGasDuration => reverseGasDuration; 
+    [SerializeField] private float reverseBrakeDuration = 2.0f;
+    private float ReverseBrakeDuration => reverseBrakeDuration;
 
     public void SetReward(float reward) {
         Reward = reward;
