@@ -8,6 +8,7 @@ public abstract class Agent : MonoBehaviour
     public bool IsFrozen { get; private set; }
     public bool IsBackingUp { get; private set; }
     public float BackUpTimer { get; private set; }
+
     public float Reward { get; private set; }
 
     [SerializeField] private float reverseDuration = 4.0f;
@@ -41,8 +42,7 @@ public abstract class Agent : MonoBehaviour
         IsDone = true;
     }
 
-    public void StartBackingUp()
-    {
+    public void StartBackingUp() {
         IsBackingUp = true;
     }
 
@@ -60,8 +60,7 @@ public abstract class Agent : MonoBehaviour
         }
     }
 
-    public void StopBackingUp()
-    {
+    public void StopBackingUp() {
         IsBackingUp = false;
         BackUpTimer = 0;
     }
