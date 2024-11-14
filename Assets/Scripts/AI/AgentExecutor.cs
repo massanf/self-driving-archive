@@ -115,15 +115,9 @@ public class AgentExecutor : MonoBehaviour
             return;
         }
 
-        double[] action = new double[] {};
-        if(Agents[index].agent.IsBackingUp) {
-            action = Agents[index].agent.UpdateBackupTimerAndGetAction(Time.fixedDeltaTime);
-        } else {
-            List<double> observation = Agents[index].agent.GetAllObservations();
-            action = Agents[index].brain.GetAction(observation);
-        }
-        bool inReverse = Agents[index].agent.IsBackingUp;
-        Agents[index].agent.AgentAction(action, inReverse);
+        List<double> observation = Agents[index].agent.GetAllObservations();
+        double[] action = Agents[index].brain.GetAction(observation);
+        Agents[index].agent.AgentAction(action);
 
         scores[index]=Agents[index].agent.GetDistance();
     }
