@@ -6,6 +6,11 @@ public abstract class Agent : MonoBehaviour
 {
     public bool IsDone { get; private set; }
     public bool IsFrozen { get; private set; }
+    public bool IsBackingUp { get; private set; }
+    public float BackUpTimer { get; private set; }
+
+    public float Reward { get; private set; }
+
 
     public float Reward { get; private set; }
 
@@ -31,6 +36,29 @@ public abstract class Agent : MonoBehaviour
     public void Done()
     {
         IsDone = true;
+    }
+
+    public void StartBackingUp() {
+        IsBackingUp = true;
+    }
+
+    public double[] UpdateBackupTimerAndGetAction(float delta) {
+        BackUpTimer += delta;
+        if (BackUpTimer > ReverseDuration) {
+            StopBackingUp();
+        }
+        if (BackUpTimer < ReverseGasDuration) {
+            return new double[] {0.0f, -0.3f, 0.0f};
+        } else if (BackUpTimer > ReverseDuration - ReverseBrakeDuration) {
+            return new double[] {0.0f, 0.0f, 1.0f};
+        } else {
+            return new double[] {0.0f, 0.0f, 0.0f};
+        }
+    }
+
+    public void StopBackingUp() {
+        IsBackingUp = false;
+        BackUpTimer = 0;
     }
 
     public void Reset()
